@@ -13,6 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+
 # Expose the port that the application will be running on
 EXPOSE 8000
 
